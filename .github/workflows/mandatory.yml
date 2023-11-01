@@ -1,19 +1,7 @@
 name: 'mandatory-reviews'
 on: 
-  pull_request:
-    types:
-      [
-        assigned,
-        unassigned,
-        opened,
-        reopened,
-        synchronize,
-        review_requested,
-        review_request_removed
-      ]
-    branches: [ "main" ]
   pull_request_review:
-
+    branches: [ "main" ]
 jobs:
   pr-gatekeeper:
     name: PR Gatekeeper
