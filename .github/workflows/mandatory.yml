@@ -4,6 +4,7 @@ on:
     branches: [ "main" ]
 jobs:
   test-1:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Mandatory reviews
@@ -14,6 +15,7 @@ jobs:
           usernames: delebedev,pturovsk
   test-2:
     name: Required Reviews
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: required-reviewers
