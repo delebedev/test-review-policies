@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [ "main" ]
 jobs:
-  test:
+  test-1:
     runs-on: ubuntu-latest
     steps:
       - name: Mandatory reviews
@@ -12,3 +12,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           usernames: delebedev,pturovsk
+  test-2:
+    name: Required Reviews
+    runs-on: ubuntu-latest
+    steps:
+      - name: required-reviewers
+        uses: theoremlp/required-reviews@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
