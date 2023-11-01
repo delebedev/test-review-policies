@@ -1,27 +1,19 @@
 name: 'mandatory-reviews'
 on: 
   pull_request:
+    types:
+      [
+        assigned,
+        unassigned,
+        opened,
+        reopened,
+        synchronize,
+        review_requested,
+        review_request_removed
+      ]
     branches: [ "main" ]
-jobs:
-  test-1:
-    permissions: write-all
-    runs-on: ubuntu-latest
-    steps:
-      - name: Mandatory reviews
-        uses: ankeetmaini/mandatory-reviews@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          usernames: delebedev,pturovsk
-  test-2:
-    name: Required Reviews
-    permissions: write-all
-    runs-on: ubuntu-latest
-    steps:
-      - name: required-reviewers
-        uses: theoremlp/required-reviews@v2
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+  pull_request_review:
+    
   pr-gatekeeper:
     name: PR Gatekeeper
     permissions: write-all
