@@ -1,0 +1,12 @@
+name: 'mandatory-reviews'
+on: pull_request_review
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mandatory reviews
+        uses: ankeetmaini/mandatory-reviews@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          usernames: delebedev,pturovsk
