@@ -1,26 +1,25 @@
 name: 'mandatory-reviews'
 on: 
-  pull_request:
-    types:
-      [
-        assigned,
-        unassigned,
-        opened,
-        reopened,
-        synchronize,
-        review_requested,
-        review_request_removed
-      ]
-    branches: [ "main" ]
   pull_request_review:
-
+    branches: [ "main" ]
 jobs:
   pr-gatekeeper:
     name: PR Gatekeeper
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: octodemo/pr-gatekeeper@v1.0
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+        with:
+          files: |
+            core/**
+
+      - name: Require extra review
+        if: steps.changed-files.outputs.any_changed == 'true'
+        uses: octodemo/pr-gatekeeper@v1.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
