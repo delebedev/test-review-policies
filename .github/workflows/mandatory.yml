@@ -20,3 +20,11 @@ jobs:
         uses: theoremlp/required-reviews@v2
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+  pr-gatekeeper:
+    name: PR Gatekeeper
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: octodemo/pr-gatekeeper@v1.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
