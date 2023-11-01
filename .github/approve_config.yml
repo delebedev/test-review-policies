@@ -1,7 +1,8 @@
 approvals:
   groups:
-    - name: hold-review-group
-      minimum:
+    - name: hold-extra-review
+      minimum: 1
       from:
-        - delebedev
         - pturovsk
+        - delebedev
+        - viktor-iankovskii
