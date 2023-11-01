@@ -1,0 +1,26 @@
+name: 'mandatory-reviews'
+on: 
+  pull_request:
+    types:
+      [
+        assigned,
+        unassigned,
+        opened,
+        reopened,
+        synchronize,
+        review_requested,
+        review_request_removed
+      ]
+    branches: [ "main" ]
+  pull_request_review:
+
+jobs:
+  pr-gatekeeper:
+    name: PR Gatekeeper
+    permissions: write-all
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: octodemo/pr-gatekeeper@v1.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
